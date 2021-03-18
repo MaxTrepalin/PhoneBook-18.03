@@ -1,0 +1,102 @@
+using System;
+using static System.Console;
+using System.Collections.Generic;
+ 
+   
+namespace ConsoleApp4
+{
+    class Program
+    {
+       
+       
+
+        static void Main(string[] args)
+        {
+
+            var phoneBook = new Dictionary<string, string>();
+            string name;
+            string phone;
+            phoneBook.Add( name = "Max Trepalin", phone = "89191800777" );
+            phoneBook.Add( name = "John Barbaro", phone = "8954544437" );
+            phoneBook.Add( name = "paul Sorvino", phone = "8919134532" );
+            phoneBook.Add( name = "Thomas Angelo", phone = "89154454543" );
+            phoneBook.Add( name = "Jack Cruse", phone = "8915454532" );
+
+
+            WriteLine("ТЕЛЕФОННЫЙ СПРАВОЧНИК");
+            WriteLine("1 - ДОБАВИТЬ НОВОГО АБОНЕНТА");
+            WriteLine("2 - ИЗМЕНИТЬ ДАННЫЕ");
+            WriteLine("3 - УДАЛИТЬ 1 КОНТАКТ");
+            WriteLine("4 - УДАЛИТЬ ВСЕ ДАННЫЕ");
+
+            int operation;
+
+            operation = Convert.ToInt32(ReadLine());
+
+            switch (operation) {
+                
+                case 1 :                    
+                        WriteLine("Введите имя: ");
+                        name = ReadLine();
+                        WriteLine("Введите номер телефона: ");
+                        phone = ReadLine();
+                        phoneBook.Add(name, phone);
+                     break;
+                
+                case 2:
+                    WriteLine("Введите имя: ");
+                    name = ReadLine();
+                    if (phoneBook.ContainsKey(name))
+                    {
+                        WriteLine("Введите имя: ");
+                        var nameEd = ReadLine();
+                      
+                        WriteLine("Введите номер телефона: ");
+                        var phoneEd = ReadLine();
+                        phoneBook[name] = nameEd;
+                        phoneBook[phone] = phoneEd;
+                        
+                        break;
+                    }
+                    else
+                        WriteLine("Нет такого имени!");
+                    break;
+
+                case 3:
+                    WriteLine("Введите имя: ");
+                     name = ReadLine();
+                    if (phoneBook.ContainsKey(name))
+                    {
+                        phoneBook.Remove(name);
+                        break;
+                    }
+                    else
+                        WriteLine("Нет такого имени!");
+                        break;
+
+                    
+                case 4:
+                    
+                        phoneBook.Clear();
+                        break;
+                case 5:
+                    break;
+            }
+           
+
+
+            WriteLine("\n\n\n");
+            WriteLine("ИМЯ            ТЕЛЕФОН \n");
+            var keys = phoneBook.Keys;
+            foreach (var key in keys)
+            {
+                Write(key + " - ");
+                WriteLine(phoneBook[key]);
+            }
+
+         
+
+            
+        }
+    }
+}
